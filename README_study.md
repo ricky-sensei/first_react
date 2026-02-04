@@ -81,7 +81,7 @@ typescriptベースで作成するときは
   - ## 変数宣言子
     | 演算子 | 役割 |
     | ---- | ---- |
-    | var | 関数外からはアクセスできない変数 |
+    | var(ほぼ使われない) | 関数外からはアクセスできない変数 |
     | let | {} =if文などのブロックスコープ外からアクセスできない変数 |
     | const | 定数 |
   - ## typescript : 静的型付け
@@ -92,9 +92,130 @@ typescriptベースで作成するときは
   - ## typescriptのデータ型
     [typescriptのデータ型](https://qiita.com/Im0_3/items/2ebbee06b8ca293e26ba)
     - ### str:文字列
+      まああれだ 文字列だ 
+      ```typescript
+      const nickname : string = "ricky"
+      console.log(nickname)
+      ```
       - #### 文字列の結合
+        ```typescript
+        const firstname : string = "chikara"
+        const lastname : string = " yoshida"
+
+        console.log(firstname + lastname)
+        // chikara yoshida
+        ```
       - #### 文字列中のデータの埋め込み
+        pythonで言うところのf記法
+        ```typescript
+        const firstname : string = "chikara"
+
+        console.log("私の名前は${ firstname }です。")
+        // 私の名前はchikaraです
+        ```
       - #### 文字列の代表的なメソッド
+        <details><summary>文字列の代表的なメソッド</summary>
+        
+
+          <h4> ①str.includes(文字列)：特定の文字列が含まれるかどうか ー＞bool</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.includes("chi"))
+          // true
+          </code>
+          </pre>
+
+          <h4> ②startsWith: 特定の文字で始まるかどうか ー＞ bool</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.startsWith("chi"))
+          // true
+          </code>
+          </pre>
+
+          <h4> ③endsWith: 特定の文字で終わるかどうか ー＞ bool</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.endsWith("ra"))
+          // true
+          </code>
+          </pre>
+
+          <h4> ④indexOf: 特定の文字が何番目にあるか ー＞ number</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.endsWith("ka"))
+          // 3
+          </code>
+          </pre>
+
+          <h4> ⑤padStart(桁数, パディングする文字): 文字列の桁数を合わせるて左側を埋める ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.padStart(10, "-"))
+          // ---chikara
+          </code>
+          </pre>
+
+          <h4> ⑥padEnd(桁数, パディングする文字): 文字列の桁数を合わせるて右側を埋める ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.padEnd(10, "-"))
+          // chikara---
+          </code>
+          </pre>
+
+          <h4> ⑦replace(検索パターン, 置換する文字): 文字列の一部を入れ替える ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "ricky yoshida"
+          console.log(firstname.replace("ricky", "ikemen"))
+          // ikemen yoshida
+          </code>
+          </pre>
+
+          <h4> ⑧slice(開始位置, 終了一): 文字列のスライシング ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          console.log(firstname.slice(3, 5))
+          // ka
+          </code>
+          </pre>
+
+          <h4> ⑧split(区切り文字): 分割して配列にする ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const full_name : string = "chikara yoshida"
+          console.log(full_name.split(" "))
+          console.log(full_name.split(" ")[0])
+          console.log(full_name.split(" ")[1])
+          // [ 'chikara', 'yoshida' ]
+          // chikara
+          // yoshida
+          </code>
+          </pre>
+
+          <h4> ⑧toUpperCase() / toLowerCase(): 大文字 / 小文字にする ー＞ string</h4>
+          <pre>
+          <code class='language-javascript'>
+          const firstname : string = "chikara"
+          const lastname : string = "YOSHIDA"
+
+          console.log(firstname.toUpperCase())
+          console.log(lastname.toLowerCase())
+          // CHIKARA
+          // yoshida
+          </code>
+          </pre>
+
+        </details>
     - ### number: 数値
       - #### 四則演算
       - #### number型の代表的なメソッド
@@ -104,6 +225,10 @@ typescriptベースで作成するときは
     - ### symbol: 一意で不変のデータ
     - ### null / undefined : 空のデータ
       - #### null / undefinedのユースケース
-      - 
+    - ### any : なんでもおＫなやつ
+      - #### 基本的には使っちゃだめ
+    - ### void：返り値を返さない関数の型
+    - ### array:
+    - ### enum:
 
 
