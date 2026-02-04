@@ -72,12 +72,38 @@ typescriptベースで作成するときは
             ```
     - ### react-app-env.d.tsx
         typescriptの型定義に関するファイル 基本ノータッチでOK
-    - package.json
+    - ### package.json
         プロジェクト内でつs買っているライブラリ屋起動コマンドなどの定義
-    - tsconfig.json
+    - ### tsconfig.json
         typescriptの設定ファイル コンパイルのルール等が書かれているらしい
-    
 
+# typescript
+  - ## 変数宣言子
+    | 演算子 | 役割 |
+    | ---- | ---- |
+    | var | 関数外からはアクセスできない変数 |
+    | let | {} =if文などのブロックスコープ外からアクセスできない変数 |
+    | const | 定数 |
+  - ## typescript : 静的型付け
+    ```typescript
+    # 変数演算子 変数名 : データ型 = データ
+    let mojiretsu : String = "ricky"
+    ```
+  - ## typescriptのデータ型
+    [typescriptのデータ型](https://qiita.com/Im0_3/items/2ebbee06b8ca293e26ba)
+    - ### str:文字列
+      - #### 文字列の結合
+      - #### 文字列中のデータの埋め込み
+      - #### 文字列の代表的なメソッド
+    - ### number: 数値
+      - #### 四則演算
+      - #### number型の代表的なメソッド
+    - ### bool : 真偽値
+      - #### boolの代表的なメソッド
+    - ### bigint : でかい数値
+    - ### symbol: 一意で不変のデータ
+    - ### null / undefined : 空のデータ
+      - #### null / undefinedのユースケース
+      - 
 
-    
 
