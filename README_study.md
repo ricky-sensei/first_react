@@ -89,6 +89,28 @@ typescriptベースで作成するときは
     # 変数演算子 変数名 : データ型 = データ
     let mojiretsu : String = "ricky"
     ```
+
+  - ## 論理演算子
+    | 演算子 | 役割 | コード例 | 結果例 |
+    |---|---|---|---|
+    | `&&` | AND（両方が true のとき true） | `true && false` | `false` |
+    | `\|\|` | OR（どちらかが true なら true） | `true \|\| false` | `true` |
+    | `!` | NOT（真偽を反転） | `!true` | `false` |
+    | `&&` | 左が true の場合 右を実行する（短絡評価） | `true && func()` | `func()` は実行される |
+    | `\|\|` | 左が falseの場合 右を実行する（短絡評価） | `flase \|\| func()` | `func()` は実行される |
+    | `??` | 左がnullの時に右の値を返す | `null ?? "default"` | `"default"` |
+  - ## 比較演算子
+    | 演算子 | 役割 | コード例 | 結果例 |
+    |---|---|---|---|
+    | `==` | 等しい（型変換あり） | `5 == "5"` | `true` |
+    | `!=` | 等しくない（型変換あり） | `5 != "5"` | `false` |
+    | `===` | 厳密に等しい（型・値ともに一致） | `5 === "5"` | `false` |
+    | `!==` | 厳密に等しくない | `5 !== "5"` | `true` |
+    | `>` | より大きい | `10 > 5` | `true` |
+    | `<` | より小さい | `3 < 7` | `true` |
+    | `>=` | 以上 | `5 >= 5` | `true` |
+    | `<=` | 以下 | `4 <= 6` | `true` |
+    | `? :` | 条件演算子（三項演算子） | `score >= 60 ? "合格" : "不合格"` | `"合格"` |
   - ## typescriptのデータ型
     [typescriptのデータ型](https://qiita.com/Im0_3/items/2ebbee06b8ca293e26ba)
     - ### str:文字列
@@ -218,6 +240,29 @@ typescriptベースで作成するときは
         </details>
     - ### number: 数値
       - #### 四則演算
+        ```typescript
+            let number8 : number = 8
+            let number10 : number = 10
+
+            console.log(number5 + number8) // 13
+            console.log(number5 - number8) //-3
+            console.log(number5 * number10) //50
+            console.log(number5 ** number8) //390625 べき乗
+            console.log(number10 / number5)  //2  割り切れる場合は整数
+            console.log(number8 / number5)  //割り切れない場合は小数
+            console.log(number8 % number5)  //あまり
+
+            //インクリメント系
+            number5 ++ //1増やす
+            number5 -- //1減らす
+
+            number5 += 1 //指定の数増やして代入
+            number5 -= 1 //指定の数減らして代入
+            number5 *= 1 //指定の数かけて代入
+            number5 /= 1 //指定の数で割って代入
+
+        ```
+
       - #### number型の代表的なメソッド
     - ### bool : 真偽値
       - #### boolの代表的なメソッド
