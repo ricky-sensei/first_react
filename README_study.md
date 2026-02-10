@@ -84,6 +84,11 @@ typescriptベースで作成するときは
     | var(ほぼ使われない) | 関数外からはアクセスできない変数 |
     | let | {} =if文などのブロックスコープ外からアクセスできない変数 |
     | const | 定数 |
+  - ## セミコロンつけるべきか問題
+    どうやらセミコロンつけない派が台頭してきてる模様
+    [セミコロンつけるべきか論争]([https://](https://zenn.dev/sparkleai_blog/articles/346593f3b32405))  
+    でも、予期しない挙動を防ぐ役割もあるので、つけたほうが良さそう
+    [セミコロンは必要](https://gizanbeak.com/post/typescript-semicolon)
   - ## typescript : 静的型付け
     ```typescript
     # 変数演算子 変数名 : データ型 = データ
@@ -111,6 +116,120 @@ typescriptベースで作成するときは
     | `>=` | 以上 | `5 >= 5` | `true` |
     | `<=` | 以下 | `4 <= 6` | `true` |
     | `? :` | 条件演算子（三項演算子） | `score >= 60 ? "合格" : "不合格"` | `"合格"` |
+  - ## 制御構文
+    - ### if:条件分岐
+      ```typescript
+      let score = 85;
+      if (score >= 90){
+          console.log("評価はAです")
+      }else if( score >=80 ){
+          console.log("評価hはBです")
+      }else if( score >=70 ){
+          console.log("評価hはCです")
+      }else{
+          console.log("落第です")
+      }
+      ```
+    - ### 三項演算子
+      true/falseの条件分岐をシンプルに記述することができる。
+      ```typescript
+      let weather = "くもり｣";
+      let bringUmbrella;
+
+      // if (weather === "雨"){
+      //     bringUmbrella = "傘さして";
+      // } else {
+      //     bringUmbrella = "傘不要";
+      // } 
+
+      bringUmbrella = (weather === "雨") ? "傘さして" : "傘不要"
+      console.log(bringUmbrella)
+      
+      ```  
+    - ### switch-case
+      pythonと違ってインデントでブロックを区切らないので、breakが必要
+        ```typescript
+        const extension : string = "ts";
+        switch (extension){
+            case "js":
+                console.log("javascript")
+                break;
+            case "ts":
+                console.log("javascript")
+                break;
+            default:
+                console.log("unknwon language")
+                break;
+        }
+      
+        ```
+    - ### for
+      - #### 構文
+        ```typescript
+        for (初期化式; 繰り返し条件; インクリメント){
+            繰り返し処理
+        } // 0から9まで
+        ```
+        例:10回繰り返す
+        ```typescript
+        for (let i = 0; i < 10; i++){
+            console.log(i)
+        } // 0から9まで
+        
+        ```
+      - #### 配列の扱い方
+        ```typescript
+        let fruitsArray:string[] = ["apple", "banana", "orange"]
+
+        // ベーシックなやつ
+        for (let i = 0; i < fruitsArray.length; i++){
+            console.log(fruitsArray[i])
+        }
+
+        // for of で、配列の要素一つ一つにアクセス
+        for (let i of fruitsArray){
+            console.log(i)
+        }
+        ```
+      
+    - ### while
+      - #### 構文
+        ```typescript
+        while (条件){
+            処理内容
+        }
+        ```
+        例:10までインクリメント
+        ```typescript
+        let num : number = 1
+
+        while( num <= 10 ){
+            console.log(num)
+            num ++;
+        }
+        ```
+      - #### 配列の扱い方
+        一応書くけど、ぶっちゃけforeachやmapを使うことが多いよね
+        ```typescript
+        let fruitslist : string[] = ["apple", "banana", "cherry"]
+        let i = 0
+        while( i < fruitslist.length ){
+            console.log(fruitslist[i])
+            i ++;
+        }
+        ```
+      - ##### ほぼ使わないけど出てくる do-while文
+        繰り返し条件に適合していようがいまいが、最初の一回目は評価をせずに実行して、その後評価が行われ、繰り返し処理がされる。inputを使う関数でたまに見るくらいで、それ以外は殆ど見ない。
+        ```typescript
+        let count = 1;
+
+        do{
+            console.log("Count is: " + count);
+            count ++;
+        }while (count <= 10);
+        
+        // 結果 Count is: 15
+        ```
   - ## typescriptのデータ型
     [typescriptのデータ型](https://qiita.com/Im0_3/items/2ebbee06b8ca293e26ba)
     - ### str:文字列
@@ -432,7 +551,7 @@ typescriptベースで作成するときは
 
         </details>
     - ### array:配列型
-      ####  宣言方法2つ
+      - ####  宣言方法2つ
       どっちも同じ
       ```typescript
       let numbers: number[] = [1, 2, 3, 4, 5];
@@ -444,19 +563,28 @@ typescriptベースで作成するときは
       let words: Array<string> = ['hello', 'world'];
       let arr: Array<string | number> = [1, 'a'];
       ```
-      #### アクセス方法
+      - #### アクセス方法
       ```typescript
       console.log(numbers[0])  //1
       console.log(words[1])    //word
       ```
-      #### 暗黙的は片付け
+      - #### 暗黙的は片付け
       typescriptでは配列は暗黙的に片付けされるので、こんな感じで違う型を入れようとするとエラーになる
       ```typescript
       let numbers = [1, 2, 3, 4, 5];
       numbers.push("apple"); 
       //Argument of type 'string' is not assignable to parameter of type 'number'.
       ```
+      #### スプレッド演算子
+      javascript / typescript共通
+      配列などのイテラブルオブジェクトを展開することができる。
+      ```typescript
+      let originalNumbers = [1, 2, 3]
+      let newNubers = [...originalNumbers, 4, 5]
 
+      console.log(newNubers) //[1, 2, 3, 4, 5] 
+      ```
+      <!-- 編集途中 -->
       <details><summary>配列型のメソッド</summary>
       
         <table>
@@ -629,8 +757,34 @@ typescriptベースで作成するときは
         </tbody>
         </table>
         </details>
-- 
+    - ### 連想配列
+      pythonでいうところの辞書型
+      ```typescript
+      // 文字列型のキーと数値型のバリューの連想配列
+      const fruits: {[key: string]:number} = {
+          apple: 100,
+          banana: 200,
+          cherry: 150
+      }
+      console.log(fruits)  
+      console.log(typeof(fruits)) //連想配列をtypeofすると必ず"object"が返ってくる
+      ```
+      アクセス方法2タイプ
+      ```typescript
+      console.log(fruits.name) // ドット記法
+      console.log(fruits["name"]) // ブラケット記法
+      ```
+
     - ### enum:
+    - ### スプレッド演算子
+      javascript / typescript共通
+      配列などのイテラブルオブジェクトを展開することができる。
+      ```typescript
+      let originalNumbers = [1, 2, 3]
+      let newNubers = [...originalNumbers, 4, 5]
+
+      console.log(newNubers) //[1, 2, 3, 4, 5] 
+      ```
     - ### bool : 真偽値
       - #### boolの代表的なメソッド
     - ### bigint : でかい数値
