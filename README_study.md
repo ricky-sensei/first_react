@@ -19,7 +19,7 @@ typescriptベースで作成するときは
     静的ファイル（HTML CSS、画像等の置き場所）
   
     - ### index.HTML
-  アプリの土台となるhtmlファイル。reactはこの中の ```html <div id="root"></div>``` に描画される
+      アプリの土台となるhtmlファイル。reactはこの中の ```html <div id="root"></div>``` に描画される
   
   - ## src
     tsx(jsベースの場合はjsx)コードの置き場所
